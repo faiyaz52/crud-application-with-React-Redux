@@ -1,2 +1,2 @@
-***Application will run on port 3000"
-http://localhost:3000
+### Application will run on port 3000
+Example: http://localhost:3000
