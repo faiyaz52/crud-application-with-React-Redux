@@ -1,0 +1,117 @@
+html, body {
+  color: #333;
+  line-height: 20px;
+}
+body {
+  margin: 20px;
+}
+
+
+.container {
+  margin: 0 auto 35px;
+  max-width: 450px;
+}
+
+/* Actual code example */
+
+$primary-color: #b11adc;
+$animation-duration: 0.4s;
+
+@mixin label-inactive() {
+  font-size: 1.2rem;
+  transform: translateY(0);
+}
+
+@mixin label-active() {
+  font-size: 0.85rem;
+  transform: translateY(-14px);
+}
+
+.form-field {
+  display: block;
+  margin-bottom: 16px;
+}
+.form-field__label {
+  @include label-active();
+  display: block;
+  font-weight: normal;
+  left: 0;
+  margin: 0;
+  padding: 18px 12px 0;
+  position: absolute;
+  top: 0;
+  transition: all $animation-duration;
+  width: 100%;
+}
+.form-field__control {
+  background: #eee;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  position: relative;
+  width:100%;
+}
+.form-field__bar {
+  border-bottom: 2px solid $primary-color;
+  bottom: 0;
+  content: "";
+  display: block;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  transform: scaleX(0);
+  transition: all $animation-duration;
+  width: 3%;
+}
+.form-field__input,
+.form-field__textarea {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #999;
+  color: #333;
+  display: block;
+  margin-top: 24px;
+  outline: 0;
+  padding: 0 12px 10px 12px;
+  width: 100%;
+  
+  // IE 10-11
+  &:-ms-input-placeholder {
+    ~ .form-field__label {
+      @include label-inactive();
+    }
+  }
+  // All other browsers except Edge
+  &:placeholder-shown {
+    ~ .form-field__label {
+      @include label-inactive();
+    }
+  }
+  &:focus {
+    ~ .form-field__label {
+      color: $primary-color;
+      @include label-active();
+    }
+    ~ .form-field__bar {
+      border-bottom: 2px solid $primary-color;
+      transform: scaleX(150);
+    }
+  }
+}
+
+
+[data-letters]:before {
+  content:attr(data-letters);
+  display:inline-block;
+  font-size:1em;
+  width:2.5em;
+  height:2.5em;
+  line-height:2.5em;
+  text-align:center;
+  border-radius:50%;
+  background:plum;
+  vertical-align:middle;
+  margin-right:1em;
+  color:white;
+  }
